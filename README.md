@@ -1,10 +1,11 @@
 # Data Structures
 
-Fundamental data structures implemented in TypeScript
+Fundamental data structures implemented in TypeScript for learning purposes
 
-Currenlty implemented:
+List of structures:
 - [Binary Heap](https://github.com/qqoen/data-structures/blob/master/src/Heap.ts)
 - [Singly Linked List](https://github.com/qqoen/data-structures/blob/master/src/LinkedList.ts)
+- [Hash Table](https://github.com/qqoen/data-structures/blob/master/src/HashTable.ts)
 
 ## How to build
 

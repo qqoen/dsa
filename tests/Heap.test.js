@@ -5,13 +5,11 @@ const { Heap } = require('../dist/index').default;
 
 describe('Heap', () => {
     test('isEmpty', () => {
+        const heap = new Heap();
 
+        expect(heap.isEmpty).toBe(true);
     });
     
-    test('traverse', () => {
-
-    });
-
     test('insert', () => {
         const heap = new Heap();
         const values = [1, 2, 3, 4];
