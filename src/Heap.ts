@@ -1,3 +1,6 @@
+/**
+ * Binary Heap
+ */
 export class Heap<T> {
     private values: T[] = [];
 

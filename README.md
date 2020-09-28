@@ -3,7 +3,8 @@
 Fundamental data structures implemented in TypeScript
 
 Currenlty implemented:
-- Heap
+- [Binary Heap](https://github.com/qqoen/data-structures/blob/master/src/Heap.ts)
+- [Singly Linked List](https://github.com/qqoen/data-structures/blob/master/src/LinkedList.ts)
 
 ## How to build
 

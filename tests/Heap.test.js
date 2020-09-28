@@ -4,6 +4,14 @@
 const { Heap } = require('../dist/index').default;
 
 describe('Heap', () => {
+    test('isEmpty', () => {
+
+    });
+    
+    test('traverse', () => {
+
+    });
+
     test('insert', () => {
         const heap = new Heap();
         const values = [1, 2, 3, 4];
