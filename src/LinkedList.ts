@@ -23,7 +23,7 @@ export class LinkedList<T> {
         }
     }
 
-    get isEmpty(): boolean {
+    public get isEmpty(): boolean {
         return this.head == null;
     }
 
@@ -42,6 +42,10 @@ export class LinkedList<T> {
         return index;
     }
 
+    /**
+     * Adds an item at the end of the list
+     * @param value
+     */
     public push(value: T): void {
         const tail = this.getTail();
         const newNode = new ListNode(value);
@@ -54,6 +58,12 @@ export class LinkedList<T> {
         tail.next = newNode;
     }
 
+    /**
+     * Adds an item at specified index, pushing
+     * next items forward
+     * @param index position of an existing item
+     * @param value
+     */
     public insert(index: number, value: T): void {
         if (this.isEmpty) {
             throw new Error('List is empty');
@@ -78,6 +88,10 @@ export class LinkedList<T> {
         throw new Error(`Index out of range: ${index}`);
     }
 
+    /**
+     * Removes the first item with specified value
+     * @param value
+     */
     public delete(value: T): void {
         if (this.isEmpty) {
             throw new Error('List is empty');

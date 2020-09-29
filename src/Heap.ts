@@ -1,10 +1,12 @@
+import { swap } from './utils';
+
 /**
  * Binary Heap
  */
 export class Heap<T> {
     private values: T[] = [];
 
-    get isEmpty(): boolean {
+    public get isEmpty(): boolean {
         return this.values.length === 0;
     }
 
@@ -18,7 +20,7 @@ export class Heap<T> {
             return this.values.pop();
         }
 
-        this.swapIdx(0, this.values.length - 1);
+        swap(this.values, 0, this.values.length - 1);
         const max = this.values.pop();
         this.siftDownIdx(0);
         return max;
@@ -37,7 +39,7 @@ export class Heap<T> {
             return;
         }
 
-        this.swapIdx(parentIdx, index);
+        swap(this.values, parentIdx, index);
         this.siftUpIdx(parentIdx);
     }
 
@@ -65,13 +67,7 @@ export class Heap<T> {
             return;
         }
 
-        this.swapIdx(swapIdx, index);
+        swap(this.values, swapIdx, index);
         this.siftDownIdx(swapIdx);
-    }
-
-    private swapIdx(idx1: number, idx2: number): void {
-        const value1 = this.values[idx1];
-        this.values[idx1] = this.values[idx2];
-        this.values[idx2] = value1;
     }
 }

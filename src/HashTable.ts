@@ -10,11 +10,14 @@ class TableNode<T> {
     }
 }
 
+/**
+ * Static hash table implementation using chaining
+ */
 export class HashTable<T> {
     private nodeTable: TableNode<T>[][];
     private size: number;
 
-    constructor(size: number) {
+    constructor(size=100) {
         if (size < 0 || size > Number.MAX_SAFE_INTEGER) {
             throw new Error(`Invalid size: ${size}`);
         }
