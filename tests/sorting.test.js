@@ -41,4 +41,5 @@ describe('sorting', () => {
     testSort('bubble', sorting.bubble.sort);
     testSort('insertion', sorting.insertion.sort);
     testSort('merge', sorting.merge.sort);
+    testSort('quicksort', sorting.quicksort.sort);
 });

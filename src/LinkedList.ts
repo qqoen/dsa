@@ -16,10 +16,19 @@ type SearchResult<T> = { node?: ListNode<T>, index: number };
  */
 export class LinkedList<T> {
     private head?: ListNode<T>;
+    private curLength: number;
 
-    constructor(initialValue?: T) {
-        if (initialValue != null) {
-            this.head = new ListNode(initialValue);
+    constructor(...initialValues: T[]) {
+        this.curLength = initialValues.length;
+
+        if (initialValues.length > 0) {
+            this.head = new ListNode(initialValues[0]);
+            let curNode = this.head;
+
+            for (let i = 1; i < initialValues.length; i++) {
+                curNode.next = new ListNode(initialValues[i]);
+                curNode = curNode.next;
+            }
         }
     }
 
@@ -27,12 +36,16 @@ export class LinkedList<T> {
         return this.head == null;
     }
 
-    public getAt(index: number): T {
-        const { node } = this.search((_, i) => i === index);
+    public get length(): number {
+        return this.curLength;
+    }
 
-        if (node.value == null) {
+    public getAt(index: number): T {
+        if (index >= this.length || index < 0) {
             throw new Error(`Index out of range: ${index}`);
         }
+
+        const { node } = this.search((_, i) => i === index);
 
         return node.value;
     }
@@ -49,6 +62,7 @@ export class LinkedList<T> {
     public push(value: T): void {
         const tail = this.getTail();
         const newNode = new ListNode(value);
+        this.curLength++;
 
         if (tail == null) {
             this.head = newNode;
@@ -65,9 +79,11 @@ export class LinkedList<T> {
      * @param value
      */
     public insert(index: number, value: T): void {
-        if (this.isEmpty) {
-            throw new Error('List is empty');
+        if (index >= this.length || index < 0) {
+            throw new Error(`Index out of range: ${index}`);
         }
+
+        this.curLength++;
 
         let i = 0;
         let curNode = this.head;
@@ -84,8 +100,6 @@ export class LinkedList<T> {
                 return;
             }
         }
-
-        throw new Error(`Index out of range: ${index}`);
     }
 
     /**
@@ -99,6 +113,7 @@ export class LinkedList<T> {
 
         if (this.head.value === value) {
             this.head = this.head.next;
+            this.curLength--;
             return;
         }
 
@@ -110,6 +125,7 @@ export class LinkedList<T> {
 
             if (curNode.value === value) {
                 prevNode.next = curNode.next;
+                this.curLength--;
                 return;
             }
         }

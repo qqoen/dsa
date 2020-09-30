@@ -31,3 +31,11 @@ export function swap(array: unknown[], idx1: number, idx2: number): void {
     array[idx1] = array[idx2];
     array[idx2] = value1;
 }
+
+/**
+ * @param from inclusive
+ * @param to inclusive
+ */
+export function randInt(from: number, to: number): number {
+    return from + Math.floor(Math.random() * (to - from + 1));
+}

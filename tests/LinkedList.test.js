@@ -12,6 +12,14 @@ describe('LinkedList', () => {
         expect(list2.isEmpty).toBe(false);
     });
 
+    test('length', () => {
+        const list1 = new LinkedList();
+        const list2 = new LinkedList(123, 23, 70);
+
+        expect(list1.length).toBe(0);
+        expect(list2.length).toBe(3);
+    });
+
     test('getAt', () => {
         const initial = 123;
         const list = new LinkedList(initial);
