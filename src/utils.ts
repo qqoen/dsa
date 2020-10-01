@@ -39,3 +39,16 @@ export function swap(array: unknown[], idx1: number, idx2: number): void {
 export function randInt(from: number, to: number): number {
     return from + Math.floor(Math.random() * (to - from + 1));
 }
+
+export function shuffle<T>(array: T[]): T[] {
+    const original = array.slice();
+    const result = [];
+
+    while (original.length > 0) {
+        const idx = randInt(0, original.length - 1);
+        result.push(original[idx]);
+        original.splice(idx, 1);
+    }
+
+    return result;
+}

@@ -1,7 +1,7 @@
 /* global require, test, describe, expect */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { sorting } = require('../dist/index').default;
+const { sorting, utils } = require('../dist/index').default;
 
 const numComp = (a, b) => {
     if (a < b) {
@@ -15,9 +15,7 @@ const numComp = (a, b) => {
     return 0;
 };
 
-const testSort = (sortName, sortFn) => {
-    const sort = sortFn.bind(null, numComp);
-
+const runSortTests = (sortName, sort) => {
     test(`${sortName}: empty`, () => {
         expect(sort([])).toEqual([]);
     });
@@ -35,11 +33,24 @@ const testSort = (sortName, sortFn) => {
         const sorted = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         expect(sort(sample)).toEqual(sorted);
     });
+
+    test(`${sortName}: shuffle`, () => {
+        const sorted = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const shuffled = utils.shuffle(sorted);
+        expect(sort(shuffled)).toEqual(sorted);
+    });
+};
+
+const testSort = (sortName, sortFn) => {
+    const sort = sortFn.bind(null, numComp);
+    runSortTests(sortName, sort);
 };
 
 describe('sorting', () => {
     testSort('bubble', sorting.bubble.sort);
     testSort('insertion', sorting.insertion.sort);
     testSort('merge', sorting.merge.sort);
-    testSort('quicksort', sorting.quicksort.sort);
+
+    runSortTests('quicksort-random', sorting.quicksort.sort);
+    runSortTests('quicksort-median', sorting.quicksort.sort2);
 });
