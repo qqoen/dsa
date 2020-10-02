@@ -15,6 +15,7 @@ Sorting Algorithms:
 - [Quicksort](https://github.com/qqoen/data-structures/blob/master/src/sorting/quicksort.ts)
 
 Search Algorithms:
+- [Breadth First Search](https://github.com/qqoen/data-structures/blob/master/src/search/BFS.ts)
 - [Depth First Search](https://github.com/qqoen/data-structures/blob/master/src/search/DFS.ts)
 
 ## How to build

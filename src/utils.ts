@@ -6,6 +6,12 @@ export enum Order {
 
 export type Compare<T> = (x: T, y: T) => Order;
 
+export interface BinaryNode<T> {
+    value: T;
+    left?: BinaryNode<T>;
+    right?: BinaryNode<T>;
+}
+
 export function hashString(key: string): number {
     let val = 0;
 
