@@ -1,6 +1,11 @@
 import { BinaryNode } from '../utils';
 
-export function search<T>(value: T, start: BinaryNode<T>): boolean {
+interface TreeNode<T> {
+    value: T;
+    children: TreeNode<T>[];
+}
+
+export function searchBinary<T>(value: T, start: BinaryNode<T>): boolean {
     const stack = [start];
     let curNode: BinaryNode<T>;
 
@@ -23,12 +28,7 @@ export function search<T>(value: T, start: BinaryNode<T>): boolean {
     return false;
 }
 
-interface TreeNode<T> {
-    value: T;
-    children: TreeNode<T>[];
-}
-
-export function search2<T>(value: T, start: TreeNode<T>): boolean {
+export function searchTree<T>(value: T, start: TreeNode<T>): boolean {
     let stack = [start];
     let curNode: TreeNode<T>;
 
@@ -40,6 +40,35 @@ export function search2<T>(value: T, start: TreeNode<T>): boolean {
         }
 
         stack = stack.concat(curNode.children);
+    }
+
+    return false;
+}
+
+export function searchGraph<T>(value: T, start: T, nodes: Map<T, T[]>): boolean {
+    if (nodes.size === 0) {
+        return false;
+    }
+
+    let stack = [start];
+    let curValue: T;
+    const seenNodes: Set<T> = new Set();
+
+    while (stack.length !== 0) {
+        curValue = stack.pop();
+
+        if (seenNodes.has(curValue)) {
+            continue;
+        }
+
+        if (curValue === value) {
+            return true;
+        }
+
+        seenNodes.add(curValue);
+
+        const links = nodes.get(curValue);
+        stack = stack.concat(links);
     }
 
     return false;

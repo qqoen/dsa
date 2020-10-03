@@ -72,6 +72,16 @@ const tree = {
     ],
 };
 
+const graph = new Map([
+    [1, [2, 3]],
+    [2, [1, 4, 5]],
+    [3, [1, 6]],
+    [4, [2, 7]],
+    [5, [2, 6, 7]],
+    [6, [3, 5, 7]],
+    [7, [4, 5, 6]],
+]);
+
 function testBinaryTree(name, fn) {
     test(`${name}: Binary Tree - root`, () => {
         expect(fn(8, bt)).toBe(true);
@@ -100,10 +110,45 @@ function testTree(name, fn) {
     });
 }
 
+function testGraph(name, fn) {
+    test(`${name}: Graph`, () => {
+        expect(fn(7, 1, graph)).toBe(true);
+        expect(fn(8, 1, graph)).toBe(false);
+    });
+}
+
 describe('search', () => {
-    const { BFS, DFS } = search;
+    const { BFS, DFS, binarySearch } = search;
 
     testBinaryTree('BFS', BFS.search);
-    testBinaryTree('DFS', DFS.search);
-    testTree('DFS', DFS.search2);
+
+    testBinaryTree('DFS', DFS.searchBinary);
+    testTree('DFS', DFS.searchTree);
+    testGraph('DFS', DFS.searchGraph);
+
+    describe('Binary Search', () => {
+        test('empty array', () => {
+            expect(binarySearch(4, [])).toBe(-1);
+        });
+
+        test('one element', () => {
+            expect(binarySearch(3, [3])).toBe(0);
+        });
+
+        test('first of two elements', () => {
+            expect(binarySearch(1, [1, 2])).toBe(0);
+        });
+
+        test('second of two elements', () => {
+            expect(binarySearch(2, [1, 2])).toBe(1);
+        });
+
+        test('missing element', () => {
+            expect(binarySearch(6, [1, 2, 3, 4, 5])).toBe(-1);
+        });
+
+        test('some array', () => {
+            expect(binarySearch(5, [1, 2, 3, 4, 5, 6, 7])).toBe(4);
+        });
+    });
 });
