@@ -1,7 +1,7 @@
 /* global require, test, describe, expect */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { LinkedList } = require('../dist/index').default;
+const { LinkedList } = require('../dist/index').default.data;
 
 describe('LinkedList', () => {
     test('isEmpty', () => {

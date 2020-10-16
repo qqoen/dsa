@@ -1,7 +1,7 @@
 /* global require, test, describe, expect */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { HashTable } = require('../dist/index').default;
+const { HashTable } = require('../dist/index').default.data;
 
 describe('HashTable', () => {
     test('getAt', () => {

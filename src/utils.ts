@@ -12,11 +12,25 @@ export interface BinaryNode<T> {
     right?: BinaryNode<T>;
 }
 
+export interface Serializable {
+    toString(): string;
+}
+
 export function hashString(key: string): number {
     let val = 0;
 
     for (let i = 0; i < key.length; i++) {
         val = val * 2 + key.charCodeAt(i);
+    }
+
+    return val;
+}
+
+export function hashString2(key: string): number {
+    let val = 0;
+
+    for (let i = key.length - 1; i >= 0; i--) {
+        val = val * 3 + key.charCodeAt(i) + 1;
     }
 
     return val;

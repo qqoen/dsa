@@ -1,4 +1,4 @@
-class ListNode<T> {
+export class ListNode<T> {
     public readonly value: T;
     public next?: ListNode<T>;
     public prev?: ListNode<T>;
@@ -9,7 +9,7 @@ class ListNode<T> {
     }
 }
 
-type SearchResult<T> = { node?: ListNode<T>, index: number };
+export type SearchResult<T> = { node?: ListNode<T>, index: number };
 
 /**
  * Singly linked list
@@ -133,21 +133,7 @@ export class LinkedList<T> {
         throw new Error(`Value not found: ${value}`);
     }
 
-    private getTail(): ListNode<T> | undefined {
-        if (this.isEmpty) {
-            return;
-        }
-
-        let curNode = this.head;
-
-        while (curNode.next != null) {
-            curNode = curNode.next;
-        }
-
-        return curNode;
-    }
-
-    private search(test: (v: T, i: number) => boolean): SearchResult<T> {
+    public search(test: (v: T, i: number) => boolean): SearchResult<T> {
         if (this.isEmpty) {
             return { index: -1 };
         }
@@ -169,5 +155,19 @@ export class LinkedList<T> {
         }
 
         return { index: -1 };
+    }
+
+    private getTail(): ListNode<T> | undefined {
+        if (this.isEmpty) {
+            return;
+        }
+
+        let curNode = this.head;
+
+        while (curNode.next != null) {
+            curNode = curNode.next;
+        }
+
+        return curNode;
     }
 }

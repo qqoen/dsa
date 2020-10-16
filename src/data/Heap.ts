@@ -1,4 +1,4 @@
-import { swap } from './utils';
+import { swap } from '../utils';
 
 interface HeapNode<T> {
     priority: number;

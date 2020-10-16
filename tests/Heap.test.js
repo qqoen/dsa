@@ -1,7 +1,7 @@
 /* global require, test, describe, expect */
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const { Heap } = require('../dist/index').default;
+const { Heap } = require('../dist/index').default.data;
 
 describe('Heap', () => {
     test('isEmpty', () => {
