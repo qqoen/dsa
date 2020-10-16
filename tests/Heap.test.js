@@ -15,7 +15,7 @@ describe('Heap', () => {
         const values = [1, 2, 3, 4];
 
         values.forEach((val) => {
-            heap.insert(val);
+            heap.insert(val, val);
         });
 
         const result = [];
@@ -32,7 +32,7 @@ describe('Heap', () => {
         const values = [1, 2, 3, 4];
 
         values.forEach((val) => {
-            heap.insert(val);
+            heap.insert(val, val);
         });
 
         const max = heap.extractMax();
@@ -46,5 +46,19 @@ describe('Heap', () => {
         });
 
         expect(result).toEqual([3, 1, 2]);
+    });
+
+    test('changePriority', () => {
+        const heap = new Heap();
+        const values = [1, 2, 3, 4];
+
+        values.forEach((val) => {
+            heap.insert(val, val);
+        });
+
+        heap.changePriority(1, 5);
+        const max = heap.extractMax();
+
+        expect(max).toBe(1);
     });
 });
